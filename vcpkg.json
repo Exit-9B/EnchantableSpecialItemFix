@@ -1,0 +1,12 @@
+{
+  "name": "enchantablespecialitemfix",
+  "version": "1",
+  "description": "Fix player-made enchantments not appearing on descriptions of special items",
+  "homepage": "https://github.com/Exit-9B/EnchantedSpecialItemFix",
+  "license": "MIT",
+  "dependencies": [
+    "boost-stl-interfaces",
+    "rsm-binary-io",
+    "spdlog"
+  ]
+}
