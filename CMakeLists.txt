@@ -146,3 +146,10 @@ install(
 	FILES ${Papyrus_OUTPUT}
 	DESTINATION "Scripts"
 )
+
+install(
+	FILES
+		${CMAKE_CURRENT_SOURCE_DIR}/dist/EnchantableSpecialItemFix_Gaunt.esp
+		${CMAKE_CURRENT_SOURCE_DIR}/dist/EnchantableSpecialItemFix_USSEP.esp
+	DESTINATION "."
+)
