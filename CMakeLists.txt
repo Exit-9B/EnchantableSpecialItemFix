@@ -116,7 +116,7 @@ target_link_libraries(
 		spdlog::spdlog
 )
 
-file(GLOB PAPYRUS_SOURCES
+file(GLOB Papyrus_SOURCES
 	LIST_DIRECTORIES false
 	CONFIGURE_DEPENDS
 	"scripts/*.psc"
@@ -126,11 +126,11 @@ add_papyrus(
 	"Papyrus"
 	GAME ${Skyrim64Path}
 	IMPORTS ${CMAKE_CURRENT_SOURCE_DIR}/scripts
-	SOURCES ${PAPYRUS_SOURCES}
+	SOURCES ${Papyrus_SOURCES}
 	OPTIMIZE ANONYMIZE
 )
 
-source_group("Scripts" FILES ${PAPYRUS_SOURCES})
+source_group("Scripts" FILES ${Papyrus_SOURCES})
 
 install(
 	FILES "$<TARGET_FILE:${PROJECT_NAME}>"
@@ -138,11 +138,11 @@ install(
 )
 
 install(
-	FILES ${PAPYRUS_SOURCES}
+	FILES ${Papyrus_SOURCES}
 	DESTINATION "Source/Scripts"
 )
 
 install(
-	FILES ${PAPYRUS_OUTPUT}
+	FILES ${Papyrus_OUTPUT}
 	DESTINATION "Scripts"
 )
