@@ -149,26 +149,57 @@ source_group("Scripts" FILES ${Papyrus_SOURCES})
 install(
 	FILES "$<TARGET_FILE:${PROJECT_NAME}>"
 	DESTINATION "SKSE/Plugins"
+	COMPONENT SKSEPlugin
 )
 
 install(
 	FILES ${Papyrus_SOURCES}
 	DESTINATION "Source/Scripts"
+	COMPONENT Data
+)
+
+install(
+	FILES ${Papyrus_SOURCES}
+	DESTINATION "Data/Source/Scripts"
+	COMPONENT Fomod
+	EXCLUDE_FROM_ALL
 )
 
 install(
 	FILES ${Papyrus_OUTPUT}
 	DESTINATION "Scripts"
+	COMPONENT Data
+)
+
+install(
+	FILES ${Papyrus_OUTPUT}
+	DESTINATION "Data/Scripts"
+	COMPONENT Fomod
+	EXCLUDE_FROM_ALL
 )
 
 install(
 	FILES
-		${CMAKE_CURRENT_SOURCE_DIR}/dist/EnchantableSpecialItemFix_Gaunt.esp
-		${CMAKE_CURRENT_SOURCE_DIR}/dist/EnchantableSpecialItemFix_USSEP.esp
+		${CMAKE_CURRENT_SOURCE_DIR}/dist/Patches/EnchantableSpecialItemFix_Gaunt.esp
+		${CMAKE_CURRENT_SOURCE_DIR}/dist/Patches/EnchantableSpecialItemFix_USSEP.esp
 	DESTINATION "."
+	COMPONENT Data
 )
 
-set(CPACK_GENERATOR "7Z")
-set(CPACK_PACKAGE_FILE_NAME ${PROJECT_NAME}-${PROJECT_VERSION})
-set(CPACK_INCLUDE_TOPLEVEL_DIRECTORY FALSE)
-include(CPack)
+install(
+	FILES
+		${CMAKE_CURRENT_SOURCE_DIR}/dist/Patches/EnchantableSpecialItemFix_Gaunt.esp
+		${CMAKE_CURRENT_SOURCE_DIR}/dist/Patches/EnchantableSpecialItemFix_USSEP.esp
+	DESTINATION "Patches"
+	COMPONENT Fomod
+	EXCLUDE_FROM_ALL
+)
+
+install(
+	FILES
+		${CMAKE_CURRENT_SOURCE_DIR}/dist/fomod/info.xml
+		${CMAKE_CURRENT_SOURCE_DIR}/dist/fomod/ModuleConfig.xml
+	DESTINATION "fomod"
+	COMPONENT Fomod
+	EXCLUDE_FROM_ALL
+)

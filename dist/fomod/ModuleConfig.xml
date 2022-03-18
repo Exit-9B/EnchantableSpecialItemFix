@@ -1,0 +1,92 @@
+<!-- Created with FOMOD Creation Tool 1.7.0.37 [http://www.nexusmods.com/fallout4/mods/6821] --> 
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://qconsulting.ca/fo3/ModConfig5.0.xsd"> 
+	<moduleName>Enchantable Special Item Fix</moduleName> 
+	<requiredInstallFiles> 
+		<folder source="Data/Scripts" destination="Scripts" /> 
+		<folder source="Data/Source" destination="Source" /> 
+	</requiredInstallFiles> 
+	<installSteps order="Explicit"> 
+		<installStep name="Game Version"> 
+			<optionalFileGroups order="Explicit"> 
+				<group name="Game Version" type="SelectExactlyOne"> 
+					<plugins order="Explicit"> 
+						<plugin name="Skyrim Special Edition"> 
+							<description>Skyrim Special Edition 1.6.x</description> 
+							<files> 
+								<folder source="SkyrimSE\SKSE" destination="SKSE" priority="0" /> 
+							</files> 
+							<typeDescriptor> 
+								<type name="Optional"/> 
+							</typeDescriptor> 
+						</plugin> 
+						<plugin name="Skyrim VR"> 
+							<description>Skyrim VR 1.4.15.1</description> 
+							<files> 
+								<folder source="SkyrimVR\SKSE" destination="SKSE" priority="0" /> 
+							</files> 
+							<typeDescriptor> 
+								<dependencyType> 
+									<defaultType name="Optional"/> 
+									<patterns> 
+										<pattern> 
+											<dependencies operator="And"> 
+												<fileDependency file="SkyrimVR.esm" state="Active"/> 
+											</dependencies> 
+											<type name="Recommended"/> 
+										</pattern> 
+									</patterns> 
+								</dependencyType> 
+							</typeDescriptor> 
+						</plugin> 
+					</plugins> 
+				</group> 
+			</optionalFileGroups> 
+		</installStep> 
+		<installStep name="Select Patches"> 
+			<optionalFileGroups order="Explicit"> 
+				<group name="Patches" type="SelectAny"> 
+					<plugins order="Explicit"> 
+						<plugin name="Creation Club Fearsome Fists"> 
+							<description>Adds an innate unarmed bonus to all Brawler gauntlet variants.</description> 
+							<files> 
+								<file source="Patches\EnchantableSpecialItemFix_Gaunt.esp" destination="EnchantableSpecialItemFix_Gaunt.esp" priority="0" /> 
+							</files> 
+							<typeDescriptor> 
+								<dependencyType> 
+									<defaultType name="Optional"/> 
+									<patterns> 
+										<pattern> 
+											<dependencies operator="And"> 
+												<fileDependency file="ccCBHSSE001-Gaunt.esl" state="Active"/> 
+											</dependencies> 
+											<type name="Recommended"/> 
+										</pattern> 
+									</patterns> 
+								</dependencyType> 
+							</typeDescriptor> 
+						</plugin> 
+						<plugin name="Unofficial Skyrim Special Edition Patch"> 
+							<description>Restores item descriptions to Silver weapons and Dawnguard equipment and removes the corresponding extra loading screens.</description> 
+							<files> 
+								<file source="Patches\EnchantableSpecialItemFix_USSEP.esp" destination="EnchantableSpecialItemFix_USSEP.esp" priority="0" /> 
+							</files> 
+							<typeDescriptor> 
+								<dependencyType> 
+									<defaultType name="Optional"/> 
+									<patterns> 
+										<pattern> 
+											<dependencies operator="And"> 
+												<fileDependency file="Unofficial Skyrim Special Edition Patch.esp" state="Active"/> 
+											</dependencies> 
+											<type name="Recommended"/> 
+										</pattern> 
+									</patterns> 
+								</dependencyType> 
+							</typeDescriptor> 
+						</plugin> 
+					</plugins> 
+				</group> 
+			</optionalFileGroups> 
+		</installStep> 
+	</installSteps> 
+</config>
