@@ -32,6 +32,12 @@ if(CMAKE_GENERATOR MATCHES "Visual Studio")
 	option(CMAKE_VS_INCLUDE_INSTALL_TO_DEFAULT_BUILD "Include INSTALL target to default build." OFF)
 endif()
 
+option(BUILD_SKYRIMVR "Build the mod for Skyrim VR" OFF)
+
+if (BUILD_SKYRIMVR)
+	add_compile_definitions(SKYRIMVR)
+endif()
+
 list(APPEND CMAKE_IGNORE_PATH "${PROJECT_BINARY_DIR}")
 list(APPEND CMAKE_MODULE_PATH
 	"${PROJECT_SOURCE_DIR}/cmake"
