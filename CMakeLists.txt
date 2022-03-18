@@ -24,7 +24,8 @@ get_filename_component(
 if(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
 	set(CMAKE_INSTALL_PREFIX "${Skyrim64Path}/Data" CACHE PATH
 		"Install path prefix (e.g. Skyrim Data directory or Mod Organizer virtual directory)."
-		FORCE)
+		FORCE
+	)
 endif()
 
 if(CMAKE_GENERATOR MATCHES "Visual Studio")
@@ -32,8 +33,10 @@ if(CMAKE_GENERATOR MATCHES "Visual Studio")
 endif()
 
 list(APPEND CMAKE_IGNORE_PATH "${PROJECT_BINARY_DIR}")
-list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake")
-list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/tools/BethesdaCMakeModules/Modules")
+list(APPEND CMAKE_MODULE_PATH
+	"${PROJECT_SOURCE_DIR}/cmake"
+	"${PROJECT_SOURCE_DIR}/tools/BethesdaCMakeModules/Modules"
+)
 
 include(AddCXXFiles)
 include(Papyrus)
@@ -67,6 +70,8 @@ target_sources(
 		${CMAKE_CURRENT_BINARY_DIR}/version.rc
 		.clang-format
 		.editorconfig
+		README.md
+		vcpkg.json
 )
 
 target_precompile_headers(
