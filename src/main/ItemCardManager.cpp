@@ -1,6 +1,7 @@
 #include "ItemCardManager.h"
 
 #ifndef SKYRIMVR
+
 bool ItemCardManager::InstallHooks()
 {
 	auto& trampoline = SKSE::GetTrampoline();
@@ -49,6 +50,7 @@ bool ItemCardManager::InstallHooks()
 
 	return true;
 }
+
 #endif
 
 auto ItemCardManager::GetSingleton() -> ItemCardManager*

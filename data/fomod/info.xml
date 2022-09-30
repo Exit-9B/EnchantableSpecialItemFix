@@ -1,7 +1,6 @@
 <fomod> 
 	<Name>Enchantable Special Item Fix</Name> 
 	<Author>Parapets</Author> 
-	<Version>1.0.1</Version> 
 	<Website>https://www.nexusmods.com/skyrimspecialedition/mods/65154</Website> 
 	<Description>Fixes player-made enchantments not appearing on descriptions of special items.</Description> 
 	<Groups>

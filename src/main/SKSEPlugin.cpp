@@ -32,6 +32,7 @@ namespace
 }
 
 #ifndef SKYRIMVR
+
 extern "C" DLLEXPORT constinit auto SKSEPlugin_Version =
 []() {
 	SKSE::PluginVersionData v{};
@@ -52,7 +53,7 @@ extern "C" DLLEXPORT bool SKSEAPI
 {
 	a_info->infoVersion = SKSE::PluginInfo::kVersion;
 	a_info->name = Plugin::NAME.data();
-	a_info->version = 1;
+	a_info->version = Plugin::VERSION[0];
 
 	if (a_skse->IsEditor()) {
 		logger::critical("Loaded in editor, marking as incompatible"sv);
@@ -67,6 +68,7 @@ extern "C" DLLEXPORT bool SKSEAPI
 
 	return true;
 }
+
 #endif
 
 extern "C" DLLEXPORT bool SKSEAPI SKSEPlugin_Load(const SKSE::LoadInterface* a_skse)

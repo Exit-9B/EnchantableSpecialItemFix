@@ -1,8 +1,8 @@
-cmake_minimum_required(VERSION 3.20)
+cmake_minimum_required(VERSION 3.22)
 
 project(
 	EnchantableSpecialItemFix
-	VERSION 1.0.0
+	VERSION 1.0.1
 	LANGUAGES CXX
 )
 
@@ -95,29 +95,28 @@ target_include_directories(
 
 if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
 	target_compile_options(
-		"${PROJECT_NAME}"
+		${PROJECT_NAME}
 		PRIVATE
-			"/sdl"	# Enable Additional Security Checks
-			"/utf-8"	# Set Source and Executable character sets to UTF-8
-			"/Zi"	# Debug Information Format
+			"/sdl"             # Enable Additional Security Checks
+			"/utf-8"           # Set Source and Executable character sets to UTF-8
+			"/Zi"              # Debug Information Format
 
-			"/permissive-"	# Standards conformance
-			"/Zc:preprocessor"	# Enable preprocessor conformance mode
+			"/permissive-"     # Standards conformance
+			"/Zc:preprocessor" # Enable preprocessor conformance mode
 
-			"/wd4200" # nonstandard extension used : zero-sized array in struct/union
+			"/wd4200"          # nonstandard extension used : zero-sized array in struct/union
 
 			"$<$<CONFIG:DEBUG>:>"
 			"$<$<CONFIG:RELEASE>:/Zc:inline;/JMC-;/Ob3>"
 	)
 
 	target_link_options(
-		"${PROJECT_NAME}"
+		${PROJECT_NAME}
 		PRIVATE
 			"$<$<CONFIG:DEBUG>:/INCREMENTAL;/OPT:NOREF;/OPT:NOICF>"
 			"$<$<CONFIG:RELEASE>:/INCREMENTAL:NO;/OPT:REF;/OPT:ICF;/DEBUG:FULL>"
 	)
 endif()
-
 
 add_subdirectory("external/CommonLibSSE" CommonLibSSE EXCLUDE_FROM_ALL)
 
@@ -141,13 +140,16 @@ add_papyrus(
 	GAME ${Skyrim64Path}
 	IMPORTS ${CMAKE_CURRENT_SOURCE_DIR}/scripts
 	SOURCES ${Papyrus_SOURCES}
-	OPTIMIZE ANONYMIZE
+	OPTIMIZE
+	ANONYMIZE
 )
 
 source_group("Scripts" FILES ${Papyrus_SOURCES})
 
 install(
-	FILES "$<TARGET_FILE:${PROJECT_NAME}>"
+	FILES
+		"$<TARGET_FILE:${PROJECT_NAME}>"
+		"$<TARGET_PDB_FILE:${PROJECT_NAME}>"
 	DESTINATION "SKSE/Plugins"
 	COMPONENT SKSEPlugin
 )
@@ -159,46 +161,23 @@ install(
 )
 
 install(
-	FILES ${Papyrus_SOURCES}
-	DESTINATION "Data/Source/Scripts"
-	COMPONENT Fomod
-	EXCLUDE_FROM_ALL
-)
-
-install(
 	FILES ${Papyrus_OUTPUT}
 	DESTINATION "Scripts"
 	COMPONENT Data
 )
 
 install(
-	FILES ${Papyrus_OUTPUT}
-	DESTINATION "Data/Scripts"
-	COMPONENT Fomod
-	EXCLUDE_FROM_ALL
-)
-
-install(
 	FILES
-		${CMAKE_CURRENT_SOURCE_DIR}/dist/Patches/EnchantableSpecialItemFix_Gaunt.esp
-		${CMAKE_CURRENT_SOURCE_DIR}/dist/Patches/EnchantableSpecialItemFix_USSEP.esp
+		${CMAKE_CURRENT_SOURCE_DIR}/data/Patches/EnchantableSpecialItemFix_Gaunt.esp
+		${CMAKE_CURRENT_SOURCE_DIR}/data/Patches/EnchantableSpecialItemFix_USSEP.esp
 	DESTINATION "."
-	COMPONENT Data
+	COMPONENT Patches
 )
 
 install(
 	FILES
-		${CMAKE_CURRENT_SOURCE_DIR}/dist/Patches/EnchantableSpecialItemFix_Gaunt.esp
-		${CMAKE_CURRENT_SOURCE_DIR}/dist/Patches/EnchantableSpecialItemFix_USSEP.esp
-	DESTINATION "Patches"
-	COMPONENT Fomod
-	EXCLUDE_FROM_ALL
-)
-
-install(
-	FILES
-		${CMAKE_CURRENT_SOURCE_DIR}/dist/fomod/info.xml
-		${CMAKE_CURRENT_SOURCE_DIR}/dist/fomod/ModuleConfig.xml
+		${CMAKE_CURRENT_SOURCE_DIR}/data/fomod/info.xml
+		${CMAKE_CURRENT_SOURCE_DIR}/data/fomod/ModuleConfig.xml
 	DESTINATION "fomod"
 	COMPONENT Fomod
 	EXCLUDE_FROM_ALL
